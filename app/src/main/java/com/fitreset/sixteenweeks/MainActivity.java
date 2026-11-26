@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
         prefs=getSharedPreferences("fitreset_v3",0);
         getWindow().setStatusBarColor(BG);getWindow().setNavigationBarColor(BG);
         root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(BG);
-        LinearLayout header=new LinearLayout(this);header.setOrientation(LinearLayout.VERTICAL);header.setPadding(20,18,20,15);GradientDrawable headerBg=new GradientDrawable(GradientDrawable.Orientation.TL_BR,new int[]{Color.rgb(44,77,49),Color.rgb(22,36,27)});headerBg.setCornerRadius(new float[]{0,0,26,26,26,26,0,0});header.setBackground(headerBg);
+        LinearLayout header=new LinearLayout(this);header.setOrientation(LinearLayout.VERTICAL);header.setPadding(20,18,20,15);GradientDrawable headerBg=new GradientDrawable(GradientDrawable.Orientation.TL_BR,new int[]{Color.rgb(44,77,49),Color.rgb(22,36,27)});headerBg.setCornerRadii(new float[]{0,0,26,26,26,26,0,0});header.setBackground(headerBg);
         header.addView(text("16-WEEK BODY RESET · HINGLISH COACH",11,LIME,true));
         header.addView(text("FIT RESET.",29,WHITE,true));
         header.addView(text("Smart training  •  Muscle build  •  Progress track",13,MUTED,false));
