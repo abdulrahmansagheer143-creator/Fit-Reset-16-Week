@@ -103,7 +103,7 @@ public class MainActivity extends Activity {
         root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
         LinearLayout nav=new LinearLayout(this);nav.setBackgroundColor(Color.rgb(20,31,24));nav.setPadding(2,5,2,5);
         String[] tabs={"HOME","TRAIN","EXERCISES","PROGRESS","FOOD"};
-        for(int i=0;i<tabs.length;i++){final int ix=i;Button b=new Button(this);b.setText(tabs[i]);b.setTextSize(9);b.setAllCaps(false);b.setTextColor(LIME);b.setBackgroundColor(Color.TRANSPARENT);b.setPadding(2,8,2,8);b.setOnClickListener(v){showTab(ix);};nav.addView(b,new LinearLayout.LayoutParams(0,-2,1));}
+        for(int i=0;i<tabs.length;i++){final int ix=i;Button b=new Button(this);b.setText(tabs[i]);b.setTextSize(9);b.setAllCaps(false);b.setTextColor(LIME);b.setBackgroundColor(Color.TRANSPARENT);b.setPadding(2,8,2,8);b.setOnClickListener(v->{showTab(ix);});nav.addView(b,new LinearLayout.LayoutParams(0,-2,1));}
         root.addView(nav);setContentView(root);showHome();
     }
 
