@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.Typeface;
 import android.content.SharedPreferences;
 import android.view.Gravity;
@@ -35,58 +36,58 @@ public class MainActivity extends Activity {
     }
 
     private final Exercise[] library = {
-        new Exercise("press","Seated dumbbell chest press","CHEST","Dumbbells + bench with back support",2,"8–12",90,
+        new Exercise("press","Seated Dumbbell Chest Press","CHEST / SEENA","Dumbbells + back-supported bench",2,"8–12",90,
           "1. Sit with your upper and lower back supported and feet flat.\n2. Hold very light dumbbells near chest level; wrists stay straight.\n3. Press up smoothly without arching your lower back.\n4. Lower slowly only as far as comfortable.",
-          "Keep your back against the support. Exhale as you press; do not hold your breath. Stop before your shoulders shrug.",
-          "Resistance exercise: use only after your clinician/physiotherapist has cleared it and shown a comfortable setup. Stop for back pain, tingling, weakness or breathing symptoms.","press"),
-        new Exercise("row","Chest-supported dumbbell row","BACK","Incline bench + light dumbbells",2,"8–12",90,
+          "Back ko support par rakho. Press karte waqt saans bahar chhodo; breath hold mat karo. Shoulders ko kaanon ki taraf mat uthao." ,
+          "Safety: Doctor/physio ki clearance aur sahi setup ke baad hi try karo. Back pain, tingling, weakness ya breathing symptom aaye toh turant stop.","press"),
+        new Exercise("row","Chest-Supported Dumbbell Row","BACK / PEETH","Incline bench + light dumbbells",2,"8–12",90,
           "1. Set the bench to a comfortable incline and lie chest-supported.\n2. Let arms hang without rounding your back.\n3. Pull elbows gently toward your hips.\n4. Pause briefly, then lower slowly.",
-          "Chest stays on the pad; avoid jerking, twisting or lifting your head. Begin with very light weights.",
-          "Requires clinician/physio clearance. Do not perform a bent-over unsupported row; discontinue if symptoms travel into a leg or worsen.","row"),
-        new Exercise("raise","Supported seated lateral raise","SHOULDERS","Very light dumbbells + back support",2,"10–15",60,
+          "Chest bench par hi supported rahe. Jhatka, twist ya head upar kheenchna avoid karo. Bahut light weight se start karo." ,
+          "Physio clearance zaroori. Unsupported bent-over row mat karo. Pair mein pain/tingling jaaye ya symptom badhe toh stop.","row"),
+        new Exercise("raise","Seated Lateral Raise","SHOULDERS / KANDHE","Very light dumbbells + back support",2,"10–15",60,
           "1. Sit tall with your back supported and arms by your sides.\n2. Raise arms out to the sides only to a comfortable height.\n3. Pause briefly, then lower slowly.",
-          "Use very light weights. Keep shoulders relaxed and trunk still; no swinging or leaning.",
-          "Resistance exercise: only after clearance. Stop for shoulder, back or breathing symptoms.","raise"),
-        new Exercise("curl","Seated dumbbell biceps curl","BICEPS","Light dumbbells + back support",2,"8–12",60,
+          "Bahut light weight lo. Shoulders relaxed aur body stable rakho; swing ya side mein jhukna nahi." ,
+          "Clearance ke baad hi. Shoulder/back pain ya breathing issue aaye toh ruk jao.","raise"),
+        new Exercise("curl","Seated Biceps Curl","BICEPS / BAazu","Light dumbbells + back support",2,"8–12",60,
           "1. Sit with back supported, elbows close to your sides.\n2. Curl the dumbbells without moving your upper arms.\n3. Lower over 2–3 seconds.",
-          "Keep wrists straight; do not rock or arch your back. Exhale during the curl.",
-          "Use only after clearance. Choose a load that lets you breathe normally and keep your torso still.","curl"),
-        new Exercise("pushdown","Resistance-band triceps pressdown","TRICEPS","Resistance band securely anchored above",2,"10–15",60,
+          "Wrists seedhe rakho; body ko rock ya lower back ko arch mat karo. Curl karte waqt saans bahar chhodo." ,
+          "Clearance ke baad hi. Aisa halka load lo jisme normal breathing aur stable posture bana rahe.","curl"),
+        new Exercise("pushdown","Band Triceps Pressdown","TRICEPS / BAazu","Resistance band, secure anchor",2,"10–15",60,
           "1. Stand upright in a comfortable, balanced stance.\n2. Keep elbows near your sides.\n3. Press hands down by straightening elbows.\n4. Return slowly without leaning or twisting.",
-          "Use a secure anchor; test it gently first. Keep the movement small and controlled.",
-          "Only after clinician/physio clearance. Do not lean your body weight into the band.","pushdown"),
-        new Exercise("kneeext","Seated knee extension","QUADRICEPS","Chair; bodyweight or very light band",2,"10–12 each leg",60,
+          "Band ka anchor strong aur secure hona chahiye; pehle halka test karo. Movement controlled rakho." ,
+          "Doctor/physio clearance ke baad hi. Apna body weight band par mat daalo.","pushdown"),
+        new Exercise("kneeext","Seated Knee Extension","QUADS / JAANGH","Chair; bodyweight ya very light band",2,"10–12 each leg",60,
           "1. Sit fully supported with both feet on the floor.\n2. Straighten one knee slowly until comfortable.\n3. Pause briefly, then lower with control.\n4. Alternate legs.",
-          "Keep your pelvis and back supported. No kicking or heavy ankle weights.",
-          "A lower-body option to review with your physiotherapist before use; stop if it causes back or leg symptoms.","knee"),
-        new Exercise("wallpush","Wall push-up","CHEST + ARMS","Wall",2,"8–12",60,
+          "Pelvis aur back supported rakho. Kick mat karo aur heavy ankle weights mat lagao." ,
+          "Is lower-body movement ko physio se approve karao. Back ya leg symptom aaye toh turant stop.","knee"),
+        new Exercise("wallpush","Wall Push-up","CHEST + ARMS","Stable wall",2,"8–12",60,
           "1. Face a stable wall and place hands at chest height.\n2. Step back a short distance; keep body in one line.\n3. Bend elbows and bring chest toward wall.\n4. Push away smoothly.",
-          "Keep the range short and the lower back neutral. Exhale as you push away.",
-          "Even bodyweight work should be cleared with your clinician in your situation. Stop if back or breathing symptoms appear.","wall"),
-        new Exercise("bandrow","Seated resistance-band row","BACK","Resistance band + stable anchor",2,"10–12",60,
+          "Chhota range rakho aur lower back neutral. Wall push karte waqt saans bahar chhodo." ,
+          "Tumhari condition mein bodyweight exercise bhi doctor/physio se clear honi chahiye. Back ya breathing symptom aaye toh stop.","wall"),
+        new Exercise("bandrow","Seated Band Row","BACK / PEETH","Resistance band + stable anchor",2,"10–12",60,
           "1. Sit upright with feet supported and band anchored at chest height.\n2. Hold the band with arms forward but shoulders relaxed.\n3. Draw elbows back without leaning.\n4. Return slowly.",
-          "Stay tall; do not round forward or rock backward. Use a light band.",
-          "Only after clearance and with a secure anchor. Do not use if sitting posture increases back/leg symptoms.","row"),
-        new Exercise("external","Seated band external rotation","ROTATOR CUFF","Light resistance band",2,"10–12",45,
+          "Seedhe baitho; forward round ya peeche rock mat karo. Light band use karo." ,
+          "Clearance aur secure anchor ke baad hi. Sitting se back/leg symptom badhe toh mat karo.","row"),
+        new Exercise("external","Seated Band External Rotation","SHOULDER SUPPORT","Light resistance band",2,"10–12",45,
           "1. Sit upright with elbows bent 90 degrees and tucked at your sides.\n2. Start with hands in front.\n3. Move hands gently apart while elbows stay near ribs.\n4. Return slowly.",
-          "Small pain-free range; do not twist your trunk or force the shoulders.",
-          "Review with physiotherapist and use only after exercise clearance.","raise"),
-        new Exercise("hamcurl","Seated band hamstring curl","HAMSTRINGS","Chair + light band",2,"10–12 each leg",60,
+          "Sirf pain-free chhota range. Trunk twist ya shoulders ko force mat karo." ,
+          "Physio se review aur exercise clearance ke baad hi use karo.","raise"),
+        new Exercise("hamcurl","Seated Band Hamstring Curl","HAMSTRINGS / PICHLI JAANGH","Chair + light band",2,"10–12 each leg",60,
           "1. Sit supported with one end of a light band secured safely in front.\n2. Loop the other end around one ankle.\n3. Draw the heel back under the chair against light resistance.\n4. Return slowly.",
-          "Keep your back supported and movement smooth. Check the anchor before each set.",
-          "Physiotherapist approval required; avoid if it provokes back or radiating leg symptoms.","knee"),
-        new Exercise("calf","Supported calf raise","CALVES","Stable chair or counter",2,"10–15",45,
+          "Back supported aur movement smooth rakho. Har set se pehle anchor check karo." ,
+          "Physio approval zaroori. Back pain ya pair mein failta symptom ho toh avoid/stop.","knee"),
+        new Exercise("calf","Supported Calf Raise","CALVES / PINḌLI","Stable chair ya counter",2,"10–15",45,
           "1. Stand behind a stable support and hold it lightly.\n2. Keep feet hip-width apart.\n3. Rise onto the balls of your feet.\n4. Lower slowly without bouncing.",
-          "Keep your torso upright; do not use extra weight. Stop if balance is uncertain.",
-          "Only after clearance; choose a stable support and a range that does not provoke symptoms.","calf"),
-        new Exercise("hammer","Seated hammer curl","BICEPS + FOREARMS","Very light dumbbells + back support",2,"8–12",60,
+          "Torso seedha rakho; extra weight mat lo. Balance unsure ho toh stop." ,
+          "Clearance ke baad hi; stable support use karo aur symptom-free range rakho.","calf"),
+        new Exercise("hammer","Seated Hammer Curl","BICEPS + FOREARMS","Very light dumbbells + back support",2,"8–12",60,
           "1. Sit with your back supported and palms facing inward.\n2. Curl both hands toward shoulders.\n3. Lower slowly while keeping elbows close to your sides.",
-          "No swinging or back arching. Use a light load and breathe continuously.",
-          "Only after clinician clearance; stop if you need to brace hard or hold your breath.","curl")
+          "Swing ya back arch mat karo. Light weight lo aur continuously breathe karte raho." ,
+          "Doctor/physio clearance ke baad hi. Zor se brace karna ya breath hold karna pade toh stop.","curl")
     };
 
     private final int[][] sessions={{0,1,2,3,4,5},{6,7,8,9,10,11},{0,1,2,3,5,10}};
-    private final String[] sessionNames={"WORKOUT A · PUSH + PULL","WORKOUT B · CONTROL + LEGS","WORKOUT C · FULL BODY"};
+    private final String[] sessionNames={"DAY A · CHEST + BACK + ARMS","DAY B · CONTROL + LEGS","DAY C · FULL BODY LIGHT"};
     private final String[] weekdays={"MON","WED","FRI"};
 
     @Override public void onCreate(Bundle state) {
@@ -94,67 +95,67 @@ public class MainActivity extends Activity {
         prefs=getSharedPreferences("fitreset_v3",0);
         getWindow().setStatusBarColor(BG);getWindow().setNavigationBarColor(BG);
         root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(BG);
-        LinearLayout header=new LinearLayout(this);header.setOrientation(LinearLayout.VERTICAL);header.setPadding(20,18,20,15);header.setBackgroundColor(Color.rgb(34,53,39));
-        header.addView(text("16-WEEK BODY RESET",11,LIME,true));
+        LinearLayout header=new LinearLayout(this);header.setOrientation(LinearLayout.VERTICAL);header.setPadding(20,18,20,15);GradientDrawable headerBg=new GradientDrawable(GradientDrawable.Orientation.TL_BR,new int[]{Color.rgb(44,77,49),Color.rgb(22,36,27)});headerBg.setCornerRadius(new float[]{0,0,26,26,26,26,0,0});header.setBackground(headerBg);
+        header.addView(text("16-WEEK BODY RESET · HINGLISH COACH",11,LIME,true));
         header.addView(text("FIT RESET.",29,WHITE,true));
-        header.addView(text("Train with control · Build strength · Track change",13,MUTED,false));
+        header.addView(text("Smart training  •  Muscle build  •  Progress track",13,MUTED,false));
         root.addView(header);
         ScrollView scroll=new ScrollView(this);content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);content.setPadding(15,14,15,18);scroll.addView(content);
         root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
         LinearLayout nav=new LinearLayout(this);nav.setBackgroundColor(Color.rgb(20,31,24));nav.setPadding(2,5,2,5);
-        String[] tabs={"HOME","TRAIN","EXERCISES","PROGRESS","FOOD"};
+        String[] tabs={"HOME","PLAN","EXERCISE","PROGRESS","DIET"};
         for(int i=0;i<tabs.length;i++){final int ix=i;Button b=new Button(this);b.setText(tabs[i]);b.setTextSize(9);b.setAllCaps(false);b.setTextColor(LIME);b.setBackgroundColor(Color.TRANSPARENT);b.setPadding(2,8,2,8);b.setOnClickListener(v->{showTab(ix);});nav.addView(b,new LinearLayout.LayoutParams(0,-2,1));}
         root.addView(nav);setContentView(root);showHome();
     }
 
     private TextView text(String s,int size,int color,boolean bold){TextView t=new TextView(this);t.setText(s);t.setTextSize(size);t.setTextColor(color);if(bold)t.setTypeface(null,Typeface.BOLD);return t;}
-    private LinearLayout card(){LinearLayout c=new LinearLayout(this);c.setOrientation(LinearLayout.VERTICAL);c.setPadding(14,13,14,13);c.setBackgroundColor(PANEL);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2);p.bottomMargin=11;c.setLayoutParams(p);return c;}
+    private LinearLayout card(){LinearLayout c=new LinearLayout(this);c.setOrientation(LinearLayout.VERTICAL);c.setPadding(14,13,14,13);GradientDrawable surface=new GradientDrawable();surface.setColor(PANEL);surface.setCornerRadius(22);surface.setStroke(1,Color.rgb(48,67,53));c.setBackground(surface);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2);p.bottomMargin=11;c.setLayoutParams(p);return c;}
     private void add(View v){content.addView(v);}
     private void title(String s){TextView t=text(s,19,WHITE,true);t.setPadding(2,8,2,12);add(t);}
-    private Button btn(String s,Runnable action){Button b=new Button(this);b.setText(s);b.setTextSize(13);b.setAllCaps(false);b.setTextColor(Color.rgb(18,29,19));b.setBackgroundTintList(android.content.res.ColorStateList.valueOf(LIME));b.setOnClickListener(v->action.run());return b;}
+    private Button btn(String s,Runnable action){Button b=new Button(this);b.setText(s);b.setTextSize(13);b.setAllCaps(false);b.setTextColor(Color.rgb(18,29,19));GradientDrawable gd=new GradientDrawable();gd.setColor(LIME);gd.setCornerRadius(16);b.setBackground(gd);b.setPadding(18,10,18,10);b.setOnClickListener(v->action.run());return b;}
     private EditText field(String hint,int type){EditText e=new EditText(this);e.setSingleLine(true);e.setHint(hint);e.setInputType(type);e.setTextColor(WHITE);e.setHintTextColor(MUTED);return e;}
     private void showTab(int i){selectedTab=i;sessionActive=false;if(restTimer!=null){restTimer.cancel();restTimer=null;}if(i==0)showHome();else if(i==1)showTraining();else if(i==2)showLibrary();else if(i==3)showProgress();else showFood();}
     private boolean cleared(){return prefs.getBoolean("clinician_clearance",false);}
     private void clearanceCard(){
-        LinearLayout c=card();c.addView(text("YOUR SAFETY GATE",12,ORANGE,true));
-        c.addView(text(cleared()?"Clinician clearance recorded. Still check symptoms before each session.":"Before resistance workouts, ask your doctor/physiotherapist to approve your L4–L5 and breathing status, plus these exercise variations.",14,WHITE,true));
-        c.addView(text("The app cannot assess your spine, asthma control or current symptoms. Browsing exercises is available now; starting a resistance session stays locked until you confirm clinician clearance.",12,MUTED,false));
+        LinearLayout c=card();c.addView(text("PEHLE SAFETY, PHIR TRAINING",12,ORANGE,true));
+        c.addView(text(cleared()?"Doctor/physio clearance note hai. Har session se pehle apne symptoms check karo.":"Strength workout shuru karne se pehle doctor/physio se L4–L5 back aur breathing/asthma ke hisaab se clearance lo.",14,WHITE,true));
+        c.addView(text("App tumhari back ya breathing check nahi kar sakta. Exercise library dekh sakte ho, lekin strength session tabhi unlock hoga jab doctor/physio clearance confirm karoge.",12,MUTED,false));
         add(c);
-        if(!cleared())add(btn("I have clinician clearance",()->new AlertDialog.Builder(this).setTitle("Confirm clearance").setMessage("Has your doctor or physiotherapist reviewed your current back and breathing condition and cleared you for resistance training and these exercise types? Do not select this based only on feeling okay today.").setNegativeButton("Not yet",null).setPositiveButton("Yes, I have clearance", (d,w)->{prefs.edit().putBoolean("clinician_clearance",true).apply();showHome();}).show()));
+        if(!cleared())add(btn("Doctor/physio ne clearance diya hai",()->new AlertDialog.Builder(this).setTitle("Clearance confirm karo").setMessage("Kya doctor/physio ne tumhari current back aur breathing condition review karke resistance training aur ye exercises approve ki hain? Sirf aaj theek feel karne par YES select mat karna.").setNegativeButton("Abhi nahi",null).setPositiveButton("Haan, clearance mila hai", (d,w)->{prefs.edit().putBoolean("clinician_clearance",true).apply();showHome();}).show()));
     }
     private void showHome(){
         content.removeAllViews();int sessionsDone=prefs.getInt("sessions_done",0);
-        LinearLayout hero=card();hero.addView(text("YOUR 16-WEEK GOAL",11,LIME,true));hero.addView(text("Build muscle. Reduce body fat.",23,WHITE,true));hero.addView(text("Current phase: "+(week<=4?"FOUNDATION":week<=8?"BUILD":week<=12?"DEVELOP":"CONSOLIDATE"),13,MUTED,false));hero.addView(text("Week "+week+" of 16  ·  "+sessionsDone+" sessions logged",13,MUTED,false));hero.addView(btn("OPEN TODAY'S TRAINING",()->showTraining()));add(hero);
+        LinearLayout hero=card();hero.addView(text("TERA 16-WEEK MISSION",11,LIME,true));hero.addView(text("Muscle build karo. Body fat gradual kam karo.",23,WHITE,true));hero.addView(text("Current phase: "+(week<=4?"BASE":week<=8?"BUILD":week<=12?"PROGRESS":"CONSOLIDATE"),13,MUTED,false));hero.addView(text("Week "+week+" / 16  ·  "+sessionsDone+" workouts complete",13,MUTED,false));hero.addView(btn("AAJ KA WORKOUT DEKHO",()->showTraining()));add(hero);
         LinearLayout grid=new LinearLayout(this);grid.setOrientation(LinearLayout.HORIZONTAL);
-        grid.addView(stat("SESSIONS",String.valueOf(sessionsDone)),new LinearLayout.LayoutParams(0,-2,1));
+        grid.addView(stat("WORKOUTS",String.valueOf(sessionsDone)),new LinearLayout.LayoutParams(0,-2,1));
         grid.addView(stat("WEEK",week+"/16"),new LinearLayout.LayoutParams(0,-2,1));
-        grid.addView(stat("CLEARANCE",cleared()?"YES":"PENDING"),new LinearLayout.LayoutParams(0,-2,1));add(grid);
+        grid.addView(stat("CLEARANCE",cleared()?"DONE":"PENDING"),new LinearLayout.LayoutParams(0,-2,1));add(grid);
         clearanceCard();
-        LinearLayout guide=card();guide.addView(text("HOW THIS PROGRAM WORKS",16,LIME,true));guide.addView(text("3 non-consecutive strength days per week (A/B/C), with comfortable walking on other days. Start with 2 sets per exercise. Keep reps smooth and stop well before straining. There is no forced weight increase.",13,WHITE,false));add(guide);
-        LinearLayout notice=card();notice.addView(text("THE GOAL IS A STRONGER, LEANER BODY — SAFELY",14,LIME,true));notice.addView(text("A visible six-pack depends on body-fat level, muscle, genetics and time. This app tracks habits and progress; it cannot promise a particular look in 16 weeks.",12,MUTED,false));add(notice);
-        add(btn("VIEW EXERCISE DEMONSTRATIONS",()->showLibrary()));
+        LinearLayout guide=card();guide.addView(text("PLAN KAISE CHALEGA?",16,LIME,true));guide.addView(text("Har week 3 non-consecutive strength days (A/B/C). Baaki din sirf comfortable walking/recovery, agar doctor ne allow kiya ho. Har exercise ke 2 sets se plan diya hai. Reps slow aur controlled. Weight badhane ki zabardasti nahi.",13,WHITE,false));add(guide);
+        LinearLayout notice=card();notice.addView(text("GOAL: STRONG AUR LEAN BODY — SAFE TAREEKE SE",14,LIME,true));notice.addView(text("Abs visible hona body-fat, muscle, genetics aur time par depend karta hai. App progress track karega; 16 weeks mein six-pack ki guarantee nahi de sakta.",12,MUTED,false));add(notice);
+        add(btn("EXERCISES AUR FORM DEKHO",()->showLibrary()));
     }
     private View stat(String name,String value){LinearLayout c=card();c.setPadding(10,10,10,10);c.addView(text(name,10,MUTED,true));c.addView(text(value,17,WHITE,true));return c;}
 
     private void showTraining(){
-        content.removeAllViews();title("YOUR WEEKLY TRAINING");
+        content.removeAllViews();title("TERA WEEKLY WORKOUT PLAN");
         LinearLayout phase=card();phase.addView(text("WEEK "+week+" / 16",14,LIME,true));
         SeekBar seek=new SeekBar(this);seek.setMax(15);seek.setProgress(week-1);seek.setProgressTintList(android.content.res.ColorStateList.valueOf(LIME));seek.setThumbTintList(android.content.res.ColorStateList.valueOf(LIME));seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){public void onProgressChanged(SeekBar s,int p,boolean u){week=p+1;}public void onStartTrackingTouch(SeekBar s){}public void onStopTrackingTouch(SeekBar s){showTraining();}});
-        phase.addView(seek);phase.addView(text(week<=4?"Weeks 1–4 · Learn setup and control":week<=8?"Weeks 5–8 · Repeat with consistent form":week<=12?"Weeks 9–12 · Build repeatable strength": "Weeks 13–16 · Consolidate and review",13,MUTED,false));add(phase);
+        phase.addView(seek);phase.addView(text(week<=4?"Week 1–4 · Basics seekho, form samjho":week<=8?"Week 5–8 · Same form ke saath consistency":week<=12?"Week 9–12 · Controlled strength build": "Week 13–16 · Progress review aur recovery",13,MUTED,false));add(phase);
         clearanceCard();
-        String[] info={"Chest press · supported row · lateral raise · curl · band pressdown · seated knee extension","Wall push-up · band row · external rotation · band hamstring curl · calf raise · hammer curl","Repeat key upper-body patterns with a lighter lower-body option"};
-        for(int i=0;i<3;i++){final int ix=i;LinearLayout c=card();c.addView(text(weekdays[i]+"  ·  "+sessionNames[i],14,LIME,true));c.addView(text(info[i],13,WHITE,false));c.addView(text("Approx. 25–40 min · 2 sets each · controlled pace",11,MUTED,false));if(cleared())c.addView(btn("CHECK READINESS & START",()->readiness(ix)));else c.addView(text("LOCKED · clinician clearance required",12,ORANGE,true));add(c);}
-        LinearLayout walk=card();walk.addView(text("EASY WALKING / CARDIO",15,LIME,true));walk.addView(text("Choose an easy, conversational pace only if breathing is settled and your clinician has approved it. Begin with a short duration that you already tolerate; do not chase step targets or speed.",13,WHITE,false));walk.addView(btn("LOG WALKING MINUTES",()->logWalk()));add(walk);
-        LinearLayout rest=card();rest.addView(text("RECOVERY DAYS",15,LIME,true));rest.addView(text("Gentle daily movement, adequate sleep, regular meals and rest. A rest day is part of the plan.",13,MUTED,false));add(rest);
+        String[] info={"Chest press · supported row · shoulder raise · biceps curl · triceps band · seated knee extension","Wall push-up · seated band row · shoulder rotation · hamstring curl · calf raise · hammer curl","Selected upper-body moves repeat + light lower-body option"};
+        for(int i=0;i<3;i++){final int ix=i;LinearLayout c=card();c.addView(text(weekdays[i]+"  ·  "+sessionNames[i],14,LIME,true));c.addView(text(info[i],13,WHITE,false));c.addView(text("Approx. 25–40 min · 2 sets · slow aur controlled pace",11,MUTED,false));if(cleared())c.addView(btn("READINESS CHECK KARO & START",()->readiness(ix)));else c.addView(text("LOCKED · doctor/physio clearance zaroori",12,ORANGE,true));add(c);}
+        LinearLayout walk=card();walk.addView(text("LIGHT WALK / CARDIO",15,LIME,true));walk.addView(text("Sirf tab easy pace par walk karo jab breathing normal ho aur clinician ne allow kiya ho. Jitni duration pehle se comfortably tolerate hoti hai, wahi se start karo. Steps ya speed ka pressure mat lo.",13,WHITE,false));walk.addView(btn("WALKING MINUTES ADD KARO",()->logWalk()));add(walk);
+        LinearLayout rest=card();rest.addView(text("REST & RECOVERY DAYS",15,LIME,true));rest.addView(text("Halka daily movement (agar allowed ho), proper sleep, regular meals aur rest. Recovery bhi training ka part hai.",13,MUTED,false));add(rest);
     }
 
     private void readiness(int which){
         LinearLayout box=new LinearLayout(this);box.setOrientation(1);box.setPadding(8,4,8,4);
-        CheckBox back=new CheckBox(this);back.setText("No unusual back/leg pain, numbness or weakness today");back.setTextColor(WHITE);back.setButtonTintList(android.content.res.ColorStateList.valueOf(LIME));
-        CheckBox breath=new CheckBox(this);breath.setText("Breathing is at my usual baseline; no wheeze/chest tightness");breath.setTextColor(WHITE);breath.setButtonTintList(android.content.res.ColorStateList.valueOf(LIME));
-        CheckBox meds=new CheckBox(this);meds.setText("My prescribed reliever/action plan is available, if applicable");meds.setTextColor(WHITE);meds.setButtonTintList(android.content.res.ColorStateList.valueOf(LIME));
-        box.addView(text("Do not start if you are unwell, symptoms are flaring, or you are unsure.",13,ORANGE,true));box.addView(back);box.addView(breath);box.addView(meds);
-        AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Session readiness").setView(box).setNegativeButton("Cancel",null).setPositiveButton("Continue",null).create();
+        CheckBox back=new CheckBox(this);back.setText("Aaj unusual back/leg pain, numbness ya weakness nahi hai");back.setTextColor(WHITE);back.setButtonTintList(android.content.res.ColorStateList.valueOf(LIME));
+        CheckBox breath=new CheckBox(this);breath.setText("Breathing normal baseline par hai; wheezing/chest tightness nahi");breath.setTextColor(WHITE);breath.setButtonTintList(android.content.res.ColorStateList.valueOf(LIME));
+        CheckBox meds=new CheckBox(this);meds.setText("Mera prescribed reliever inhaler/action plan paas hai (agar applicable)");meds.setTextColor(WHITE);meds.setButtonTintList(android.content.res.ColorStateList.valueOf(LIME));
+        box.addView(text("Unwell ho, symptoms badh rahe hon ya doubt ho toh workout start mat karo.",13,ORANGE,true));box.addView(back);box.addView(breath);box.addView(meds);
+        AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Workout se pehle readiness check").setView(box).setNegativeButton("Cancel",null).setPositiveButton("Continue",null).create();
         dialog.setOnShowListener(d->{Button ok=dialog.getButton(AlertDialog.BUTTON_POSITIVE);ok.setEnabled(false);android.widget.CompoundButton.OnCheckedChangeListener l=(b,v)->ok.setEnabled(back.isChecked()&&breath.isChecked()&&meds.isChecked());back.setOnCheckedChangeListener(l);breath.setOnCheckedChangeListener(l);meds.setOnCheckedChangeListener(l);ok.setOnClickListener(v->{dialog.dismiss();startWorkout(which);});});
         dialog.show();
     }
@@ -162,77 +163,77 @@ public class MainActivity extends Activity {
     private void startWorkout(int which){activeSession=which;setDone=new int[6];sessionActive=true;renderWorkout();}
     private void renderWorkout(){
         content.removeAllViews();title(sessionNames[activeSession]);
-        LinearLayout intro=card();intro.addView(text("TODAY'S SESSION",11,LIME,true));intro.addView(text("Complete each set at a comfortable effort. Rest 60–90 seconds or longer until breathing is back to normal.",13,WHITE,false));intro.addView(btn("END SESSION",()->finishWorkout()));add(intro);
+        LinearLayout intro=card();intro.addView(text("AAJ KA SESSION",11,LIME,true));intro.addView(text("Har set comfortable effort se karo. 60–90 sec ya zyada rest lo—next set tabhi jab breathing normal ho.",13,WHITE,false));intro.addView(btn("SESSION END KARO",()->finishWorkout()));add(intro);
         int[] ids=sessions[activeSession];
         for(int pos=0;pos<ids.length;pos++){final int ix=pos;Exercise e=library[ids[pos]];
             LinearLayout c=card();c.setOrientation(1);c.addView(new ExerciseSketch(this,e.art),new LinearLayout.LayoutParams(-1,125));
             c.addView(text(e.name,16,WHITE,true));c.addView(text(e.group+"  ·  "+e.equipment,11,MUTED,false));c.addView(text(e.sets+" sets  ·  "+e.reps+" reps  ·  rest "+e.rest+" sec",12,LIME,true));
-            c.addView(text("Completed: "+setDone[pos]+" / "+e.sets+" sets",12,MUTED,false));
-            c.addView(btn("EXERCISE FORM & DETAILS",()->exerciseDetails(e)));
-            if(setDone[pos]<e.sets)c.addView(btn("COMPLETE SET "+(setDone[pos]+1),()->{setDone[ix]++;renderWorkout();if(setDone[ix]<e.sets)startRest(e.rest);}));
+            c.addView(text("Complete: "+setDone[pos]+" / "+e.sets+" sets",12,MUTED,false));
+            c.addView(btn("FORM AUR DETAILS DEKHO",()->exerciseDetails(e)));
+            if(setDone[pos]<e.sets)c.addView(btn("SET "+(setDone[pos]+1)+" COMPLETE",()->{setDone[ix]++;renderWorkout();if(setDone[ix]<e.sets)startRest(e.rest);}));
             else c.addView(text("✓ EXERCISE COMPLETE",13,LIME,true));
             add(c);
         }
-        LinearLayout end=card();end.addView(text("Take your time. Never train through pain, unusual breathlessness or chest symptoms.",12,ORANGE,true));end.addView(btn("FINISH & SAVE SESSION",()->finishWorkout()));add(end);
+        LinearLayout end=card();end.addView(text("Jaldi mat karo. Pain, unusual breathlessness ya chest symptoms ke saath workout continue mat karo.",12,ORANGE,true));end.addView(btn("WORKOUT FINISH & SAVE",()->finishWorkout()));add(end);
     }
     private void startRest(int seconds){
         if(restTimer!=null)restTimer.cancel();
         LinearLayout c=card();timerText=text("REST: "+seconds+" sec",20,LIME,true);c.addView(timerText);
-        c.addView(btn("SKIP REST",()->{if(restTimer!=null)restTimer.cancel();timerText.setText("Rest skipped — resume only when ready.");}));
+        c.addView(btn("REST SKIP",()->{if(restTimer!=null)restTimer.cancel();timerText.setText("Rest skip ho gaya — ready feel ho tabhi continue karo.");}));
         content.addView(c,Math.min(content.getChildCount(),2));
-        restTimer=new CountDownTimer(seconds*1000L,1000){public void onTick(long ms){if(timerText!=null)timerText.setText("REST: "+(ms/1000)+" sec");}public void onFinish(){if(timerText!=null)timerText.setText("REST COMPLETE — resume when comfortable");}}.start();
+        restTimer=new CountDownTimer(seconds*1000L,1000){public void onTick(long ms){if(timerText!=null)timerText.setText("REST: "+(ms/1000)+" sec");}public void onFinish(){if(timerText!=null)timerText.setText("REST COMPLETE — comfortable ho tab continue karo");}}.start();
     }
     private void finishWorkout(){
         if(restTimer!=null){restTimer.cancel();restTimer=null;}int total=0;for(int i=0;i<6;i++)total+=setDone[i];
-        if(total==0){new AlertDialog.Builder(this).setMessage("No sets were logged. End without saving?").setNegativeButton("Continue workout",null).setPositiveButton("End", (d,w)->{sessionActive=false;showTraining();}).show();return;}
+        if(total==0){new AlertDialog.Builder(this).setMessage("Koi set log nahi hua. Bina save kiye end karein?").setNegativeButton("Workout continue",null).setPositiveButton("End", (d,w)->{sessionActive=false;showTraining();}).show();return;}
         prefs.edit().putInt("sessions_done",prefs.getInt("sessions_done",0)+1).putInt("last_sets",total).putInt("week",week).apply();
-        sessionActive=false;new AlertDialog.Builder(this).setTitle("Session saved").setMessage(total+" sets recorded. Recover, hydrate and note any symptoms.").setPositiveButton("Done",(d,w)->showHome()).show();
+        sessionActive=false;new AlertDialog.Builder(this).setTitle("Workout save ho gaya!").setMessage(total+" sets record hue. Ab recover karo, paani piyo aur symptoms note karo.").setPositiveButton("Done",(d,w)->showHome()).show();
     }
 
     private void showLibrary(){
-        content.removeAllViews();title("EXERCISE LIBRARY");
-        LinearLayout intro=card();intro.addView(text("FORM FIRST · LIGHT LOADS · NO STRAIN",12,LIME,true));intro.addView(text("Tap any movement to see the illustrated setup, step-by-step instructions, cues and safety notes. These are previews, not a personalised physiotherapy prescription.",13,MUTED,false));add(intro);
-        String[] filters={"ALL","CHEST","BACK","SHOULDERS","ARMS","LEGS"};
+        content.removeAllViews();title("EXERCISE LIBRARY · EXERCISE BANK");
+        LinearLayout intro=card();intro.addView(text("PEHLE FORM · LIGHT WEIGHT · NO STRAIN",12,LIME,true));intro.addView(text("Kisi exercise par tap karo: movement sketch, step-by-step Hinglish guide, form tips aur safety note milega. Ye demo guide hai, personal physio prescription nahi.",13,MUTED,false));add(intro);
+        String[] filters={"ALL","CHEST","BACK","SHOULDER","ARMS","LEGS"};
         LinearLayout f=new LinearLayout(this);f.setOrientation(LinearLayout.HORIZONTAL);
         for(String filter:filters){Button b=new Button(this);b.setText(filter);b.setTextSize(9);b.setTextColor(LIME);b.setAllCaps(false);b.setBackgroundColor(PANEL2);b.setOnClickListener(v->{showLibraryFilter(filter);});f.addView(b,new LinearLayout.LayoutParams(0,-2,1));}
         add(f);showLibraryItems("ALL");
     }
-    private void showLibraryFilter(String filter){content.removeAllViews();title("EXERCISE LIBRARY · "+filter);add(btn("← ALL EXERCISES",()->showLibrary()));showLibraryItems(filter);}
+    private void showLibraryFilter(String filter){content.removeAllViews();title("EXERCISE BANK · "+filter);add(btn("← SAARI EXERCISES",()->showLibrary()));showLibraryItems(filter);}
     private void showLibraryItems(String filter){
         for(Exercise e:library){boolean ok=filter.equals("ALL")||(filter.equals("ARMS")&&(e.group.contains("BICEPS")||e.group.contains("TRICEPS")||e.group.contains("ARMS")||e.group.contains("FOREARMS")))||e.group.contains(filter);if(!ok)continue;
-            LinearLayout c=card();c.addView(new ExerciseSketch(this,e.art),new LinearLayout.LayoutParams(-1,120));c.addView(text(e.name,15,WHITE,true));c.addView(text(e.group+" · "+e.equipment,11,MUTED,false));c.addView(btn("VIEW DEMO & INSTRUCTIONS",()->exerciseDetails(e)));add(c);
+            LinearLayout c=card();c.addView(new ExerciseSketch(this,e.art),new LinearLayout.LayoutParams(-1,120));c.addView(text(e.name,15,WHITE,true));c.addView(text(e.group+" · "+e.equipment,11,MUTED,false));c.addView(btn("DEMO & HINGLISH GUIDE",()->exerciseDetails(e)));add(c);
         }
     }
     private void exerciseDetails(Exercise e){
         ScrollView sc=new ScrollView(this);LinearLayout box=new LinearLayout(this);box.setOrientation(1);box.setPadding(12,8,12,8);box.addView(new ExerciseSketch(this,e.art),new LinearLayout.LayoutParams(-1,175));box.addView(text(e.group+" · "+e.equipment,12,LIME,true));
-        box.addView(text("SETUP & MOVEMENT",13,WHITE,true));box.addView(text(e.steps,14,MUTED,false));box.addView(text("FORM CUES",13,WHITE,true));box.addView(text(e.cues,14,MUTED,false));box.addView(text("SAFETY",13,ORANGE,true));box.addView(text(e.safety,13,MUTED,false));sc.addView(box);
-        new AlertDialog.Builder(this).setTitle(e.name+"  ·  "+e.sets+" × "+e.reps).setView(sc).setPositiveButton("CLOSE",null).show();
+        box.addView(text("SETUP AUR MOVEMENT",13,WHITE,true));box.addView(text(e.steps,14,MUTED,false));box.addView(text("FORM TIPS",13,WHITE,true));box.addView(text(e.cues,14,MUTED,false));box.addView(text("SAFETY NOTE",13,ORANGE,true));box.addView(text(e.safety,13,MUTED,false));sc.addView(box);
+        new AlertDialog.Builder(this).setTitle(e.name+"  ·  "+e.sets+" × "+e.reps).setView(sc).setPositiveButton("BAND KARO",null).show();
     }
 
     private void showProgress(){
-        content.removeAllViews();title("BODY & PERFORMANCE TRACKER");
-        LinearLayout c=card();c.addView(text("BODY WEIGHT (KG)",12,LIME,true));EditText weight=field("e.g. 68.0",InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);weight.setText(prefs.getString("weight",""));c.addView(weight);
-        c.addView(text("WAIST (CM)",12,LIME,true));EditText waist=field("Measure at the same point each time",InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);waist.setText(prefs.getString("waist",""));
+        content.removeAllViews();title("BODY PROGRESS TRACKER");
+        LinearLayout c=card();c.addView(text("BODY WEIGHT (KG)",12,LIME,true));EditText weight=field("Example: 68.0",InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);weight.setText(prefs.getString("weight",""));c.addView(weight);
+        c.addView(text("WAIST (CM)",12,LIME,true));EditText waist=field("Har baar same point par measure karo",InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);waist.setText(prefs.getString("waist",""));
         c.addView(text("CHEST (CM)",12,LIME,true));EditText chest=field("Optional",InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);chest.setText(prefs.getString("chest",""));
         c.addView(text("ARM (CM)",12,LIME,true));EditText arm=field("Optional",InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);arm.setText(prefs.getString("arm",""));
-        c.addView(btn("SAVE MEASUREMENTS",()->{prefs.edit().putString("weight",weight.getText().toString()).putString("waist",waist.getText().toString()).putString("chest",chest.getText().toString()).putString("arm",arm.getText().toString()).apply();Toast.makeText(this,"Measurements saved on this phone",Toast.LENGTH_SHORT).show();}));
+        c.addView(btn("MEASUREMENTS SAVE KARO",()->{prefs.edit().putString("weight",weight.getText().toString()).putString("waist",waist.getText().toString()).putString("chest",chest.getText().toString()).putString("arm",arm.getText().toString()).apply();Toast.makeText(this,"Measurements phone par save ho gayi",Toast.LENGTH_SHORT).show();}));
         add(c);
-        LinearLayout log=card();log.addView(text("RECOVERY CHECK-IN",14,LIME,true));EditText sleep=field("Sleep last night (hours)",InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);sleep.setText(prefs.getString("sleep",""));log.addView(sleep);EditText energy=field("Energy today (1–5)",InputType.TYPE_CLASS_NUMBER);energy.setText(prefs.getString("energy",""));log.addView(energy);EditText pain=field("Back/leg symptoms today (brief note)",InputType.TYPE_CLASS_TEXT);pain.setText(prefs.getString("symptoms",""));log.addView(pain);log.addView(btn("SAVE RECOVERY CHECK-IN",()->{prefs.edit().putString("sleep",sleep.getText().toString()).putString("energy",energy.getText().toString()).putString("symptoms",pain.getText().toString()).apply();Toast.makeText(this,"Check-in saved",Toast.LENGTH_SHORT).show();}));add(log);
-        LinearLayout walk=card();walk.addView(text("WALKING MINUTES THIS WEEK",13,LIME,true));walk.addView(text(prefs.getInt("walk_minutes",0)+" min logged",19,WHITE,true));walk.addView(btn("ADD WALKING MINUTES",()->logWalk()));add(walk);
-        LinearLayout stats=card();stats.addView(text("MEASURE CONSISTENTLY",13,LIME,true));stats.addView(text("Use similar time, conditions and tape placement. Weight can fluctuate day to day; look at longer trends rather than one reading.",12,MUTED,false));add(stats);
+        LinearLayout log=card();log.addView(text("RECOVERY CHECK-IN",14,LIME,true));EditText sleep=field("Kal raat kitni neend? (hours)",InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);sleep.setText(prefs.getString("sleep",""));log.addView(sleep);EditText energy=field("Aaj energy level (1–5)",InputType.TYPE_CLASS_NUMBER);energy.setText(prefs.getString("energy",""));log.addView(energy);EditText pain=field("Aaj back/leg symptoms? (short note)",InputType.TYPE_CLASS_TEXT);pain.setText(prefs.getString("symptoms",""));log.addView(pain);log.addView(btn("RECOVERY CHECK-IN SAVE",()->{prefs.edit().putString("sleep",sleep.getText().toString()).putString("energy",energy.getText().toString()).putString("symptoms",pain.getText().toString()).apply();Toast.makeText(this,"Check-in save ho gaya",Toast.LENGTH_SHORT).show();}));add(log);
+        LinearLayout walk=card();walk.addView(text("IS WEEK WALKING MINUTES",13,LIME,true));walk.addView(text(prefs.getInt("walk_minutes",0)+" min logged",19,WHITE,true));walk.addView(btn("WALKING TIME ADD KARO",()->logWalk()));add(walk);
+        LinearLayout stats=card();stats.addView(text("SAME TAREEKE SE MEASURE KARO",13,LIME,true));stats.addView(text("Har baar same time aur same tape placement rakho. Weight daily up-down ho sakta hai; ek reading ke bajay weekly trend dekho.",12,MUTED,false));add(stats);
     }
     private void logWalk(){
-        EditText mins=field("Minutes walked",InputType.TYPE_CLASS_NUMBER);
-        new AlertDialog.Builder(this).setTitle("Log comfortable walking").setView(mins).setNegativeButton("Cancel",null).setPositiveButton("SAVE",(d,w)->{int n=0;try{n=Integer.parseInt(mins.getText().toString());}catch(Exception ignored){}if(n>0)prefs.edit().putInt("walk_minutes",prefs.getInt("walk_minutes",0)+n).apply();Toast.makeText(this,"Walking minutes saved",Toast.LENGTH_SHORT).show();}).show();
+        EditText mins=field("Kitne minutes walk ki?",InputType.TYPE_CLASS_NUMBER);
+        new AlertDialog.Builder(this).setTitle("Easy walk log karo").setView(mins).setNegativeButton("Cancel",null).setPositiveButton("SAVE",(d,w)->{int n=0;try{n=Integer.parseInt(mins.getText().toString());}catch(Exception ignored){}if(n>0)prefs.edit().putInt("walk_minutes",prefs.getInt("walk_minutes",0)+n).apply();Toast.makeText(this,"Walking time save ho gaya",Toast.LENGTH_SHORT).show();}).show();
     }
 
     private void showFood(){
-        content.removeAllViews();title("NUTRITION FOR A LEANER PHYSIQUE");
-        LinearLayout c=card();c.addView(text("SET YOUR OWN DAILY TARGETS",13,LIME,true));EditText protein=field("Protein target (grams)",InputType.TYPE_CLASS_NUMBER);protein.setText(prefs.getString("protein_goal",""));EditText calories=field("Calorie target (optional)",InputType.TYPE_CLASS_NUMBER);calories.setText(prefs.getString("calorie_goal",""));c.addView(protein);c.addView(calories);c.addView(btn("SAVE TARGETS",()->{prefs.edit().putString("protein_goal",protein.getText().toString()).putString("calorie_goal",calories.getText().toString()).apply();Toast.makeText(this,"Targets saved",Toast.LENGTH_SHORT).show();}));add(c);
-        LinearLayout intake=card();intake.addView(text("TODAY'S FOOD LOG",14,LIME,true));EditText eaten=field("Protein eaten today (grams)",InputType.TYPE_CLASS_NUMBER);eaten.setText(prefs.getString("protein_today",""));intake.addView(eaten);EditText meals=field("Meals / notes (e.g. eggs, dal, chicken)",InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE);meals.setText(prefs.getString("food_notes",""));intake.addView(meals);
-        intake.addView(btn("SAVE TODAY'S FOOD",()->{prefs.edit().putString("protein_today",eaten.getText().toString()).putString("food_notes",meals.getText().toString()).apply();Toast.makeText(this,"Food log saved",Toast.LENGTH_SHORT).show();}));add(intake);
-        LinearLayout guide=card();guide.addView(text("SIMPLE MEAL STRUCTURE",14,LIME,true));guide.addView(text("Include a protein source, vegetables or fruit, a carbohydrate source and fluids across meals. Options: eggs, milk, curd, paneer, dal, rajma, chicken, fish, soy, rice, oats and fruit.",13,WHITE,false));add(guide);
-        LinearLayout caution=card();caution.addView(text("NO CRASH DIET",13,ORANGE,true));caution.addView(text("Avoid starvation diets, dehydration tricks or extreme cuts. A sustainable calorie deficit is not appropriate for everyone; set calorie/protein targets with a qualified dietitian if you have a medical condition or symptoms.",12,MUTED,false));add(caution);
+        content.removeAllViews();title("DIET & NUTRITION GUIDE");
+        LinearLayout c=card();c.addView(text("APNA DAILY TARGET SET KARO",13,LIME,true));EditText protein=field("Daily protein target (grams)",InputType.TYPE_CLASS_NUMBER);protein.setText(prefs.getString("protein_goal",""));EditText calories=field("Calories target (optional)",InputType.TYPE_CLASS_NUMBER);calories.setText(prefs.getString("calorie_goal",""));c.addView(protein);c.addView(calories);c.addView(btn("TARGETS SAVE KARO",()->{prefs.edit().putString("protein_goal",protein.getText().toString()).putString("calorie_goal",calories.getText().toString()).apply();Toast.makeText(this,"Targets save ho gaye",Toast.LENGTH_SHORT).show();}));add(c);
+        LinearLayout intake=card();intake.addView(text("AAJ KA FOOD LOG",14,LIME,true));EditText eaten=field("Aaj kitna protein khaya? (grams)",InputType.TYPE_CLASS_NUMBER);eaten.setText(prefs.getString("protein_today",""));intake.addView(eaten);EditText meals=field("Aaj ke meals (eggs, dal, chicken etc.)",InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE);meals.setText(prefs.getString("food_notes",""));intake.addView(meals);
+        intake.addView(btn("AAJ KA FOOD SAVE KARO",()->{prefs.edit().putString("protein_today",eaten.getText().toString()).putString("food_notes",meals.getText().toString()).apply();Toast.makeText(this,"Food log save ho gaya",Toast.LENGTH_SHORT).show();}));add(intake);
+        LinearLayout guide=card();guide.addView(text("SIMPLE MEAL PLATE",14,LIME,true));guide.addView(text("Har main meal mein protein + sabzi/fruit + carbs + fluids include karo. Options: eggs, milk, dahi, paneer, dal, rajma, chicken, fish, soy, rice, oats aur fruits.",13,WHITE,false));add(guide);
+        LinearLayout caution=card();caution.addView(text("CRASH DIET BILKUL NAHI",13,ORANGE,true));caution.addView(text("Starvation diet, dehydration tricks ya extreme cutting mat karo. Calorie deficit har kisi ke liye suitable nahi hota. Medical condition ho toh dietitian se targets confirm karo.",12,MUTED,false));add(caution);
     }
 
     private class ExerciseSketch extends View {
