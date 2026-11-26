@@ -1,0 +1,12 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.fitreset.sixteenweeks'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.fitreset.sixteenweeks'
+        minSdk 23
+        targetSdk 35
+        versionCode 1
+        versionName '1.0'
+    }
+}
